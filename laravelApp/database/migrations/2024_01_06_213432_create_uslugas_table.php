@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('uslugas', function (Blueprint $table) {
             $table->id();
+            $table->string('naziv');
+            $table->text('opis')->nullable();
+            $table->decimal('cena', 8, 2)->nullable();
             $table->timestamps();
         });
     }

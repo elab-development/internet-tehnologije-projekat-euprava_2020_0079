@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('dokuments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('korisnik_id')->constrained('users');
+            $table->string('tip');
+            $table->text('sadrzaj')->nullable();
             $table->timestamps();
         });
     }
