@@ -18,6 +18,11 @@ return new class extends Migration
             $table->string('naziv');
             $table->text('opis')->nullable();
             $table->decimal('cena', 8, 2)->nullable();
+            $table->string('kategorija');
+            $table->integer('vreme_obrade')->nullable();
+            $table->text('dokumentacija_potrebna')->nullable();
+            $table->boolean('digitalni_potpis_potreban')->default(false);
+            $table->string('prioritet')->default('medium');
             $table->timestamps();
         });
     }

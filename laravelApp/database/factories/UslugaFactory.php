@@ -17,7 +17,14 @@ class UslugaFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'naziv' => $this->faker->words(3, true),
+            'opis' => $this->faker->sentence(),
+            'cena' => $this->faker->randomNumber(3),
+            'kategorija' => $this->faker->word,
+            'vreme_obrade' => $this->faker->randomDigitNotNull,
+            'dokumentacija_potrebna' => $this->faker->sentence(),
+            'digitalni_potpis_potreban' => $this->faker->boolean,
+            'prioritet' => $this->faker->randomElement(['low', 'medium', 'high']),
         ];
     }
 }
