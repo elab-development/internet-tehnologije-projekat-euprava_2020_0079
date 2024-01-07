@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Usluga;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,14 @@ class ZahtevFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'korisnik_id' =>  User::factory(), 
+            'usluga_id' =>  Usluga::factory(),  
+            'status_zahteva' => $this->faker->randomElement(['pending', 'processed', 'denied']),
+            'submitted_at' => $this->faker->dateTimeThisYear(),
+            'processed_at' => $this->faker->randomElement([null, $this->faker->dateTimeThisYear()]),
+            'request_priority' => $this->faker->randomElement(['low', 'medium', 'high']),
+            'additional_notes' => $this->faker->sentence(),
+            'processing_deadline' => $this->faker->dateTimeThisYear(),
         ];
     }
 }

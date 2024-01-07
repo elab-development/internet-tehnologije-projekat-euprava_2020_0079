@@ -18,11 +18,11 @@ return new class extends Migration
             $table->unsignedBigInteger('korisnik_id');
             $table->unsignedBigInteger('usluga_id');
             $table->string('status_zahteva');
-            $table->dateTime('datum_podnosenja')->nullable();
-            $table->dateTime('datum_obrade')->nullable();
-            $table->string('prioritet_zahteva')->nullable();
-            $table->text('dodatne_napomene')->nullable();
-            $table->dateTime('rok_za_obradu')->nullable();
+            $table->dateTime('submitted_at')->nullable();
+            $table->dateTime('processed_at')->nullable();
+            $table->string('request_priority');
+            $table->text('additional_notes')->nullable();
+            $table->dateTime('processing_deadline')->nullable();
             $table->timestamps();
         });
     }
