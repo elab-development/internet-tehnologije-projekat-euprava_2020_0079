@@ -105,7 +105,27 @@ class AuthController extends Controller
         return response()->json($users);
     }
     
-   
+    public function exportUsersToCsv()
+    {
+        $fileName = 'users_' . date('Y-m-d_His') . '.csv';
+        $filePath = storage_path('app/public/' . $fileName);  
+        $users = User::all();
+        
+        $columns = array_keys($users->first()->toArray());
+        
+        $file = fopen($filePath, 'w');  
+        fputcsv($file, $columns);
+    
+        foreach ($users as $user) {
+            fputcsv($file, $user->toArray());
+        }
+    
+        fclose($file);
+    
+        return response()->json(['message' => 'File saved successfully', 'file' => $fileName]);
+    }
+    
+    
  
 
     public function getCurrentUser(Request $request)
