@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UslugaController;
+use App\Http\Controllers\ZahtevController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,10 @@ Route::get('/usluge', [UslugaController::class, 'index']);
 Route::post('/usluge', [UslugaController::class, 'store']);
 Route::put('/usluge/{id}', [UslugaController::class, 'update']);
 Route::delete('/usluge/{id}', [UslugaController::class, 'destroy']);
+
+Route::prefix('api')->group(function () {
+    Route::get('/zahtevi', [ZahtevController::class, 'index']);
+    Route::post('/zahtevi', [ZahtevController::class, 'store']);
+    Route::put('/zahtevi/{id}', [ZahtevController::class, 'update']);
+    Route::delete('/zahtevi/{id}', [ZahtevController::class, 'destroy']);
+});
