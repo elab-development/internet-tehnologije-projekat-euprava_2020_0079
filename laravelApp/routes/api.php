@@ -17,21 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
- 
-Route::get('/usluge', [UslugaController::class, 'index']);
-Route::post('/usluge', [UslugaController::class, 'store']);
-Route::put('/usluge/{id}', [UslugaController::class, 'update']);
-Route::delete('/usluge/{id}', [UslugaController::class, 'destroy']);
-
-Route::prefix('api')->group(function () {
-    Route::get('/zahtevi', [ZahtevController::class, 'index']);
-    Route::post('/zahtevi', [ZahtevController::class, 'store']);
-    Route::put('/zahtevi/{id}', [ZahtevController::class, 'update']);
-    Route::delete('/zahtevi/{id}', [ZahtevController::class, 'destroy']);
+Route::resource('/zahtevi', ZahtevController::class)->only(['store', 'update', 'destroy']);
+// Zaštita svih ruta koje izvršavaju delete, update i store akcije
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::resource('/usluge', UslugaController::class)->only(['store', 'update', 'destroy']);
+   
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
-Route::get('/searchUsers', [AuthController::class, 'searchUsers']);
-Route::get('/exportUsersToCsv', [AuthController::class, 'exportUsersToCsv']);
+
+// Ostale rute koje su nezaštićene
+Route::get('/usluge', [UslugaController::class, 'index']);
+Route::get('/zahtevi', [ZahtevController::class, 'index']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
+Route::get('/searchUsers', [AuthController::class, 'searchUsers']);
+Route::get('/exportUsersToCsv', [AuthController::class, 'exportUsersToCsv']);
 Route::middleware('auth:sanctum')->get('/user', [AuthController::class, 'getCurrentUser']);

@@ -19,8 +19,8 @@ class ZahtevController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'korisnik_id' => 'required|exists:users,id',
-            'usluga_id' => 'required|exists:usluge,id',
-            'status' => 'required|string|max:255',
+            'usluga_id' => 'required|exists:uslugas,id',
+            'status_zahteva' => 'required|string|max:255',
             'submitted_at' => 'required|date',
             'processed_at' => 'nullable|date',
             'request_priority' => 'required|string|max:255',
@@ -33,6 +33,7 @@ class ZahtevController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
+        return $request;
         $zahtev = Zahtev::create($validator->validated());
         return response()->json(new ZahtevResource($zahtev), 201);
     }
@@ -46,8 +47,8 @@ class ZahtevController extends Controller
 
         $validator = Validator::make($request->all(), [
             'korisnik_id' => 'required|exists:users,id',
-            'usluga_id' => 'required|exists:usluge,id',
-            'status' => 'required|string|max:255',
+            'usluga_id' => 'required|exists:uslugas,id',
+            'status_zahteva' => 'required|string|max:255',
             'submitted_at' => 'required|date',
             'processed_at' => 'nullable|date',
             'request_priority' => 'required|string|max:255',
