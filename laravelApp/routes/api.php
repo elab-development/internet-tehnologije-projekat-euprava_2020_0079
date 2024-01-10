@@ -29,7 +29,7 @@ Route::prefix('api')->group(function () {
     Route::put('/zahtevi/{id}', [ZahtevController::class, 'update']);
     Route::delete('/zahtevi/{id}', [ZahtevController::class, 'destroy']);
 });
-
+Route::get('/searchUsers', [AuthController::class, 'searchUsers']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

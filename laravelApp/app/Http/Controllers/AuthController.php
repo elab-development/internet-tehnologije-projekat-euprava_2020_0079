@@ -18,12 +18,11 @@ class AuthController extends Controller
         'imeOca' => 'nullable|string|max:255',
         'email' => 'required|string|email|max:255|unique:users',
         'password' => 'required|string|min:6',
-        'uloga' => 'required|string|max:255',
         'jmbg' => 'required|string|max:13|unique:users',
         'brLicneKarte' => 'required|string|max:20|unique:users',
         'datumRodjenja' => 'required|date',
         'mestoRodjenja' => 'required|string|max:255',
-        'br_lk' => 'required|string|max:20',
+    
         'adresaPrebivalista' => 'required|string|max:255',
         'opstinaPrebivalista' => 'required|string|max:255'
     ]);
@@ -38,12 +37,11 @@ class AuthController extends Controller
         'imeOca' => $request->imeOca,
         'email' => $request->email,
         'password' => Hash::make($request->password),
-        'uloga' => $request->uloga,
         'jmbg' => $request->jmbg,
         'brLicneKarte' => $request->brLicneKarte,
         'datumRodjenja' => $request->datumRodjenja,
         'mestoRodjenja' => $request->mestoRodjenja,
-        'br_lk' => $request->br_lk,
+      
         'adresaPrebivalista' => $request->adresaPrebivalista,
         'opstinaPrebivalista' => $request->opstinaPrebivalista
     ]);
@@ -80,4 +78,31 @@ class AuthController extends Controller
         $request->user()->currentAccessToken()->delete();
         return response()->json(['message' => 'Logged out successfully']);
     }
+
+    public function searchUsers(Request $request)
+    {
+        $query = User::query();
+    
+        if ($request->has('opstinaPrebivalista')) {
+            $query->where('opstinaPrebivalista', $request->opstinaPrebivalista);
+        }
+    
+        if ($request->has('mestoRodjenja')) {
+            $query->where('mestoRodjenja', $request->mestoRodjenja);
+        }
+    
+        if ($request->has('datumRodjenjaStart') && $request->has('datumRodjenjaEnd')) {
+            $query->whereBetween('datumRodjenja', [$request->datumRodjenjaStart, $request->datumRodjenjaEnd]);
+        } elseif ($request->has('datumRodjenjaStart')) {
+            $query->where('datumRodjenja', '>=', $request->datumRodjenjaStart);
+        } elseif ($request->has('datumRodjenjaEnd')) {
+            $query->where('datumRodjenja', '<=', $request->datumRodjenjaEnd);
+        }
+    
+        $users = $query->get();
+    
+        return response()->json($users);
+    }
+    
+
 }
