@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dokument extends Model
 {
+    //ova klasa predstavlja dokumente poput licne karte, pasosa, raznih izvoda 
     use HasFactory;
     protected $fillable = [
         'korisnik_id', 'tip', 'sadrzaj', 

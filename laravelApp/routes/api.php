@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UslugaController;
 use App\Http\Controllers\ZahtevController;
 use Illuminate\Http\Request;
@@ -28,3 +29,8 @@ Route::prefix('api')->group(function () {
     Route::put('/zahtevi/{id}', [ZahtevController::class, 'update']);
     Route::delete('/zahtevi/{id}', [ZahtevController::class, 'destroy']);
 });
+
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
