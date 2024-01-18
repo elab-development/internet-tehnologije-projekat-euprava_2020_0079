@@ -28,7 +28,6 @@ class User extends Authenticatable
           'brLicneKarte',
         'datumRodjenja',
         'mestoRodjenja',
-        'br_lk',
         'adresaPrebivalista',
         'opstinaPrebivalista'
     ];

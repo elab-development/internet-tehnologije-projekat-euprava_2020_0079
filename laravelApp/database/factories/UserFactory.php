@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'brLicneKarte' => $this->faker->numerify('########'),
             'datumRodjenja' => $this->faker->date(),
             'mestoRodjenja' => $this->faker->city,
-            'brLicneKarte' => $this->faker->numerify('#######'),
+           
             'adresaPrebivalista' => $this->faker->address,
             'opstinaPrebivalista' => $this->faker->city,
         ];

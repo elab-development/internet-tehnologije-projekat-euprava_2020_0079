@@ -24,8 +24,7 @@ class UserResource extends JsonResource
             'jmbg' => $this->jmbg,
             'brLicneKarte' => $this->brLicneKarte,
             'datumRodjenja' => $this->datumRodjenja,
-            'mestoRodjenja' => $this->mestoRodjenja,
-            'br_lk' => $this->br_lk,
+            'mestoRodjenja' => $this->mestoRodjenja,         
             'adresaPrebivalista' => $this->adresaPrebivalista,
             'opstinaPrebivalista' => $this->opstinaPrebivalista, 
            

@@ -16,15 +16,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::resource('/zahtevi', ZahtevController::class)->only(['store', 'update', 'destroy']);
-// Zaštita svih ruta koje izvršavaju delete, update i store akcije
-Route::middleware(['auth:sanctum'])->group(function () {
-    Route::resource('/usluge', UslugaController::class)->only(['store', 'update', 'destroy']);
-   
-    Route::post('/logout', [AuthController::class, 'logout']);
-});
-
 // Ostale rute koje su nezaštićene
 Route::get('/usluge', [UslugaController::class, 'index']);
 Route::get('/zahtevi', [ZahtevController::class, 'index']);
@@ -32,4 +23,14 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/searchUsers', [AuthController::class, 'searchUsers']);
 Route::get('/exportUsersToCsv', [AuthController::class, 'exportUsersToCsv']);
+
+
 Route::middleware('auth:sanctum')->get('/user', [AuthController::class, 'getCurrentUser']);
+
+// Zaštita svih ruta koje izvršavaju delete, update i store akcije
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::resource('/usluge', UslugaController::class)->only(['store', 'update', 'destroy']);
+    Route::resource('/zahtevi', ZahtevController::class)->only(['store', 'update', 'destroy']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
+

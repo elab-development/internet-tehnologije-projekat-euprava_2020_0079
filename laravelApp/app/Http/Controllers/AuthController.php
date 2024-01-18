@@ -107,7 +107,7 @@ class AuthController extends Controller
     
     public function exportUsersToCsv()
     {
-        $fileName = 'users_' . date('Y-m-d_His') . '.csv';
+        $fileName = 'users_' . date('Y-m-d_His') . '.csv'; //users_2024-11-01_020031215546.csv
         $filePath = storage_path('app/public/' . $fileName);  
         $users = User::all();
         
