@@ -1,0 +1,38 @@
+.navbar {
+    background-color: #87BCDE; 
+    color: #0D2C54;  
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .nav-logo {
+    font-weight: bold;
+    color: #0D2C54;
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    display: flex;
+  }
+  
+  .nav-item {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #0D2C54;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-item:hover {
+    background-color: #D6F7A3; 
+  }
+  
