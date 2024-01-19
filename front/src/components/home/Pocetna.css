@@ -62,4 +62,20 @@
   }
    
  
-  
+  .slick-slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .slick-slide > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .slick-slide img {
+    max-width: 100%;
+    height: auto;  
+  }
+  .slick-slide img {
+    display: inline !important;
+}
