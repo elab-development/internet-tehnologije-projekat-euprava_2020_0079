@@ -27,9 +27,11 @@ Route::get('/exportUsersToCsv', [AuthController::class, 'exportUsersToCsv']);
 
 Route::middleware('auth:sanctum')->get('/user', [AuthController::class, 'getCurrentUser']);
 
+
+Route::resource('/usluge', UslugaController::class)->only(['store', 'update', 'destroy']);  //izvadjeno iz donje grupe ruta za potrebe react domaceg
 // Zaštita svih ruta koje izvršavaju delete, update i store akcije
 Route::middleware(['auth:sanctum'])->group(function () {
-    Route::resource('/usluge', UslugaController::class)->only(['store', 'update', 'destroy']);
+   
     Route::resource('/zahtevi', ZahtevController::class)->only(['store', 'update', 'destroy']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });

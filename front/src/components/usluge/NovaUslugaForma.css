@@ -1,0 +1,63 @@
+.nova-usluga-forma {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #fff; 
+}
+
+.nova-usluga-forma input,
+.nova-usluga-forma textarea,
+.nova-usluga-forma select {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;  
+}
+
+.nova-usluga-forma label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.nova-usluga-forma input[type="checkbox"] {
+  margin-left: 10px;
+}
+
+.nova-usluga-forma button {
+  padding: 10px;
+  background-color: #22577A;  
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;  
+}
+
+.nova-usluga-forma button:hover {
+  background-color: #87BCDE; 
+}
+ 
+.nova-usluga-forma select {
+  appearance: none; 
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%230D2C54" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Add dropdown arrow */
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  padding-right: 30px; 
+}
+ 
+.nova-usluga-forma input::placeholder,
+.nova-usluga-forma textarea::placeholder {
+  color: #aaa;
+}
+ 
+@media (max-width: 768px) {
+  .nova-usluga-forma {
+    width: 90%;
+  }
+}
