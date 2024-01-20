@@ -2,29 +2,22 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Usluge.css';
 import RedTabele from './RedTabele';
+import useFetchServices from './useFetchServices ';
 
 function Usluge() {
-  const [usluge, setUsluge] = useState([]);
+  const { data: usluge,setData:setUsluge, loading, error } = useFetchServices('http://127.0.0.1:8000/api/usluge');
   const [filteredUsluge, setFilteredUsluge] = useState([]);
   const [search, setSearch] = useState({
     naziv: '',
     kategorija: '',
     prioritet: '',
-     
   });
   const [currentPage, setCurrentPage] = useState(1);
   const servicesPerPage = 5;
-
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/usluge')
-      .then(response => {
-        setUsluge(response.data);
-        setFilteredUsluge(response.data); 
-      })
-      .catch(error => {
-        console.error('There was an error fetching the usluge!', error);
-      });
-  }, []);
+    setFilteredUsluge(usluge);  
+  }, [usluge]);
+ 
 
   useEffect(() => {
     const filteredData = usluge.filter(usluga => 
@@ -33,10 +26,11 @@ function Usluge() {
       (!search.prioritet || usluga.prioritet.toLowerCase().includes(search.prioritet.toLowerCase()))
     );
     setFilteredUsluge(filteredData);
-  }, [search]); 
+  }, [search, usluge]); 
 
   const handleSearchChange = (e) => {
-    setSearch(e.target.value);
+    const { name, value } = e.target;  
+    setSearch({ ...search, [name]: value });
     setCurrentPage(1); // Reset to first page when search changes
   };
   const handleSearch = (e) => {
@@ -52,7 +46,8 @@ function Usluge() {
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error loading services: {error.message}</p>;
   return (
     <div className="usluge">
     <form onSubmit={handleSearch}>
