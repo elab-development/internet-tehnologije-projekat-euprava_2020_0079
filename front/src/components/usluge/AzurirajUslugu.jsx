@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import './NovaUslugaForma.css';
+import InputField from './InputField';
 
 function AzurirajUslugu() {
   const [formData, setFormData] = useState({
@@ -49,8 +50,8 @@ function AzurirajUslugu() {
   return (
     <form className="nova-usluga-forma" onSubmit={handleSubmit}>
       <label htmlFor="naziv">Naziv usluge</label>
-      <input
-        id="naziv"
+      <InputField
+        label="Naziv usluge"
         type="text"
         name="naziv"
         value={formData.naziv}
@@ -58,18 +59,17 @@ function AzurirajUslugu() {
         required
       />
 
-      <label htmlFor="opis">Opis usluge</label>
-      <textarea
-        id="opis"
+      <InputField
+        label="Opis usluge"
+        type="text"
         name="opis"
         value={formData.opis}
         onChange={handleInputChange}
         required
       />
 
-      <label htmlFor="cena">Cena usluge</label>
-      <input
-        id="cena"
+      <InputField
+        label="Cena usluge"
         type="number"
         name="cena"
         value={formData.cena}
@@ -77,9 +77,8 @@ function AzurirajUslugu() {
         required
       />
 
-      <label htmlFor="kategorija">Kategorija usluge</label>
-      <input
-        id="kategorija"
+      <InputField
+        label="Kategorija usluge"
         type="text"
         name="kategorija"
         value={formData.kategorija}
@@ -87,9 +86,8 @@ function AzurirajUslugu() {
         required
       />
 
-      <label htmlFor="vreme_obrade">Vreme obrade (u danima)</label>
-      <input
-        id="vreme_obrade"
+      <InputField
+        label="Vreme obrade (u danima)"
         type="number"
         name="vreme_obrade"
         value={formData.vreme_obrade}
@@ -97,14 +95,14 @@ function AzurirajUslugu() {
         required
       />
 
-      <label htmlFor="dokumentacija_potrebna">Dokumentacija potrebna</label>
-      <input
-        id="dokumentacija_potrebna"
+      <InputField
+        label="Dokumentacija potrebna"
         type="text"
         name="dokumentacija_potrebna"
         value={formData.dokumentacija_potrebna}
         onChange={handleInputChange}
       />
+
 
       <label htmlFor="digitalni_potpis_potreban">
         Digitalni potpis potreban:
