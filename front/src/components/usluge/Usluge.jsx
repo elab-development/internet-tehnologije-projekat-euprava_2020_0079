@@ -29,11 +29,12 @@ function Usluge() {
             <th>Dokumentacija Potrebna</th>
             <th>Digitalni Potpis Potreban</th>
             <th>Prioritet</th>
+            <th>Obrisi</th>
           </tr>
         </thead>
         <tbody>
           {usluge.map(usluga => (
-            <RedTabele key={usluga.id} usluga={usluga} />  
+            <RedTabele key={usluga.id} usluga={usluga} setUsluge={setUsluge} />  
           ))}
         </tbody>
       </table>
