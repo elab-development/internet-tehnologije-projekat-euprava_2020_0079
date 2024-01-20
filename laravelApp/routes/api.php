@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 // Ostale rute koje su nezaštićene
 Route::get('/usluge', [UslugaController::class, 'index']);
+Route::get('/usluge/{id}', [UslugaController::class, 'show']);
 Route::get('/zahtevi', [ZahtevController::class, 'index']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

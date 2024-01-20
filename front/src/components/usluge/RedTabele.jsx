@@ -1,9 +1,11 @@
 import React from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function RedTabele({ usluga, setUsluge }) {
+  const navigate = useNavigate();
   const handleDelete = (id) => {
-   
+    
     if (window.confirm("Da li ste sigurni da želite da obrišete uslugu?")) {
       axios.delete(`http://127.0.0.1:8000/api/usluge/${id}`)
         .then(response => {
@@ -15,7 +17,9 @@ function RedTabele({ usluga, setUsluge }) {
         });
     }
   };
-
+  const goToUpdatePage = (id) => {
+    navigate(`promeni/${id}`);
+  };
   return (
     <tr>
       <td>{usluga.naziv}</td>
@@ -27,6 +31,7 @@ function RedTabele({ usluga, setUsluge }) {
       <td>{usluga.digitalni_potpis_potreban ? 'Da' : 'Ne'}</td>
       <td>{usluga.prioritet}</td>
       <td>
+        <button onClick={() => goToUpdatePage(usluga.id)}>Promeni</button>
         <button onClick={() => handleDelete(usluga.id)}>Obriši</button>
       </td>
     </tr>

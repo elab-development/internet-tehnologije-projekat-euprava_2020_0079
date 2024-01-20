@@ -14,7 +14,12 @@ class UslugaController extends Controller
         $usluge = Usluga::all();
         return response()->json(UslugaResource::collection($usluge));
     }
-
+     
+    public function show($id)
+        {
+            $u = Usluga::find($id);
+            return response()->json(new UslugaResource($u));
+        }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
