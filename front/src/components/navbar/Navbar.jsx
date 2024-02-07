@@ -26,10 +26,11 @@ function Navbar({ token, setToken }) {
           <Link to="/" className="nav-item">Početna</Link>
           <Link to="/usluge/dodaj" className="nav-item">Dodaj</Link>
           <Link to="/usluge" className="nav-item">Usluge</Link>
+          <Link to="/kreirajzahtev" className="nav-item">Kreiraj zahtev</Link> 
           {token ? (
             <button onClick={handleLogout} className="nav-item">Logout</button>
           ) : (<>            
-          <Link to="/login" className="nav-item">Login</Link>
+            <Link to="/login" className="nav-item">Login</Link>
             <Link to="/register" className="nav-item">Register</Link></>
 
           )}

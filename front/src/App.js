@@ -8,6 +8,7 @@ import NovaUslugaForma from './components/usluge/NovaUslugaForma';
 import AzurirajUslugu from './components/usluge/AzurirajUslugu';
 import Login from './components/login/Login';
 import Register from './components/login/Register';
+import KreirajZahtev from './components/zahtevi/KreirajZahtev';
 
 function App() {
   const [token,setToken]=useState(null);
@@ -22,6 +23,9 @@ function App() {
         <Route path="/usluge" element={<Usluge />} />
 
 
+
+
+        <Route path="/kreirajzahtev" element={<KreirajZahtev />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login setToken={setToken} />} />
 
