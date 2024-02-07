@@ -7,7 +7,7 @@ use App\Models\Zahtev;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-
+use Carbon\Carbon;
 class ZahtevController extends Controller
 {
     public function index()
@@ -16,32 +16,46 @@ class ZahtevController extends Controller
         return response()->json(ZahtevResource::collection($zahtevi));
     }
 
+
+
     public function store(Request $request)
     {
-        return $request;
+        
         // Dobijamo ID trenutno ulogovanog korisnika
         $korisnik_id = Auth::id();
     
+        // Postavljamo trenutni datum i vreme za submitted_at i processed_at
+        $submitted_at = Carbon::now();
+        $processed_at = Carbon::now();
+    
+        // Dodajemo 7 dana na trenutni datum za processing_deadline
+        $processing_deadline = Carbon::now()->addDays(7);
+    
         $validator = Validator::make($request->all(), [
-            'usluga_id' => 'required|exists:uslugas,id',
-            'status_zahteva' => 'required|string|max:255',
-            'submitted_at' => 'required|date',
-            'processed_at' => 'nullable|date',
+            'usluga_id' => 'required|exists:uslugas,id', 
+            // 'submitted_at', 'processed_at', 'processing_deadline' ne treba validirati jer ih mi postavljamo ovde
             'request_priority' => 'required|string|max:255',
             'additional_notes' => 'nullable|string|max:1000',
-            'processing_deadline' => 'nullable|date',
         ]);
-    
-        // Dodajemo korisnik_id u podatke koje validiramo
-        $validator->merge(['korisnik_id' => $korisnik_id]);
     
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
     
-        $zahtev = Zahtev::create($validator->validated());
+        // Dodajemo korisnik_id i ostale vrednosti u podatke koje validiramo
+        $validatedData = $validator->validated();
+        $validatedData['korisnik_id'] = $korisnik_id;
+        $validatedData['status_zahteva'] = "pending";
+        $validatedData['submitted_at'] = $submitted_at;
+        $validatedData['processed_at'] = $processed_at;
+        $validatedData['processing_deadline'] = $processing_deadline;
+    
+        // Kreiramo zahtev sa validiranim podacima
+        $zahtev = Zahtev::create($validatedData);
+    
         return response()->json(new ZahtevResource($zahtev), 201);
     }
+    
 
     public function update(Request $request, $id)
     {

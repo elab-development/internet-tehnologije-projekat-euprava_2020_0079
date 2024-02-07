@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('korisnik_id');
             $table->unsignedBigInteger('usluga_id');
-            $table->string('status_zahteva');
+            $table->string('status_zahteva')->default("pending");
             $table->dateTime('submitted_at')->nullable();
             $table->dateTime('processed_at')->nullable();
             $table->string('request_priority');

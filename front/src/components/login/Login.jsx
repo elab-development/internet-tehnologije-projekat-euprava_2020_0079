@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Login.css';
+import { useNavigate } from 'react-router-dom';
 
 function Login({setToken}) {
+    let navigate=useNavigate();
   const [formData, setFormData] = useState({
-    email: 'buddy.yundt@example.com',
+    email: 'qcole@example.net',
     password: 'secret'
   });
 
@@ -25,7 +27,11 @@ function Login({setToken}) {
       const accessToken = response.data.access_token;
     
       localStorage.setItem('accessToken', accessToken);
-     
+     if(response.data.user.role=='admin'){
+        navigate('/usluge');
+     }else{
+        navigate('/kreirajzahtev');
+     }
       setToken(accessToken)
     } catch (error) {
       setError('Invalid email or password. Please try again.');
