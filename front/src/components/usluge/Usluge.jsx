@@ -5,19 +5,20 @@ import RedTabele from './RedTabele';
 import useFetchServices from './useFetchServices ';
 
 function Usluge() {
-  const { data: usluge,setData:setUsluge, loading, error } = useFetchServices('http://127.0.0.1:8000/api/usluge');
+  const { data: usluge, setData: setUsluge, loading, error } = useFetchServices('http://127.0.0.1:8000/api/usluge');
   const [filteredUsluge, setFilteredUsluge] = useState([]);
   const [search, setSearch] = useState({
     naziv: '',
     kategorija: '',
     prioritet: '',
   });
+  const [sortType, setSortType] = useState('asc'); // Default sorting type is ascending
   const [currentPage, setCurrentPage] = useState(1);
   const servicesPerPage = 5;
+
   useEffect(() => {
     setFilteredUsluge(usluge);  
   }, [usluge]);
- 
 
   useEffect(() => {
     const filteredData = usluge.filter(usluga => 
@@ -25,18 +26,29 @@ function Usluge() {
       (!search.kategorija || usluga.kategorija.toLowerCase().includes(search.kategorija.toLowerCase())) &&
       (!search.prioritet || usluga.prioritet.toLowerCase().includes(search.prioritet.toLowerCase()))
     );
-    setFilteredUsluge(filteredData);
-  }, [search, usluge]); 
+    // Apply sorting based on sortType (asc or desc)
+    const sortedData = filteredData.sort((a, b) => {
+      const isReversed = (sortType === 'asc') ? 1 : -1;
+      return isReversed * a.naziv.localeCompare(b.naziv);
+    });
+    setFilteredUsluge(sortedData);
+  }, [search, usluge, sortType]);
 
   const handleSearchChange = (e) => {
     const { name, value } = e.target;  
     setSearch({ ...search, [name]: value });
     setCurrentPage(1); // Reset to first page when search changes
   };
-  const handleSearch = (e) => {
-    e.preventDefault();
-   
+
+  const handleSortChange = () => {
+    const newSortType = (sortType === 'asc') ? 'desc' : 'asc'; // Toggle sorting type
+    setSortType(newSortType);
   };
+
+  const handleSearch = (e) => {
+    e.preventDefault(); 
+  };
+
   // Get current services
   const indexOfLastService = currentPage * servicesPerPage;
   const indexOfFirstService = indexOfLastService - servicesPerPage;
@@ -46,12 +58,14 @@ function Usluge() {
 
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading services: {error.message}</p>;
+
   return (
     <div className="usluge">
-    <form onSubmit={handleSearch}>
-      <input
+      <form onSubmit={handleSearch}>
+        <input
           type="text"
           name="naziv"
           value={search.naziv}
@@ -71,7 +85,13 @@ function Usluge() {
           <option value="medium">Srednji</option>
           <option value="high">Visok</option>
         </select>
-      <button type="submit">Pretraži</button></form>
+        <button type="submit">Pretraži</button>
+      </form>
+
+      <button onClick={handleSortChange}>
+        Sortiraj {sortType === 'asc' ? 'abecedno ↑' : 'abecedno ↓'}
+      </button>
+
       <table>
         <thead>
           <tr>

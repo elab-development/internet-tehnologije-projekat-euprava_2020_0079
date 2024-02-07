@@ -27,7 +27,7 @@ function NovaUslugaForma() {
     axios.post('http://127.0.0.1:8000/api/usluge', formData)
       .then(response => {
         alert('Usluga je uspešno dodata!');
-        // Optionally reset form or handle response further
+       
         setFormData({
           naziv: '',
           opis: '',

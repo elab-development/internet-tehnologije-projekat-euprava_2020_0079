@@ -8,6 +8,7 @@ import NovaUslugaForma from './components/usluge/NovaUslugaForma';
 import AzurirajUslugu from './components/usluge/AzurirajUslugu';
 
 function App() {
+  ///////
   return (
     <BrowserRouter>
     <Navbar></Navbar>
@@ -18,6 +19,7 @@ function App() {
         <Route path="/usluge/dodaj" element={<NovaUslugaForma />} />
         <Route path="/usluge" element={<Usluge />} />
       </Routes>
+      
     </BrowserRouter>
   );
 }
