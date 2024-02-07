@@ -28,8 +28,10 @@ function Navbar({ token, setToken }) {
           <Link to="/usluge" className="nav-item">Usluge</Link>
           {token ? (
             <button onClick={handleLogout} className="nav-item">Logout</button>
-          ) : (
-            <Link to="/login" className="nav-item">Login</Link>
+          ) : (<>            
+          <Link to="/login" className="nav-item">Login</Link>
+            <Link to="/register" className="nav-item">Register</Link></>
+
           )}
         </div>
       </div>
