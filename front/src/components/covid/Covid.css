@@ -1,0 +1,134 @@
+.covid-container {
+    display: flex;
+    flex-direction: column; /* Change to column to stack elements vertically */
+    align-items: center; /* Keeps items centered */
+    padding: 20px;
+}
+
+#last-updated {
+    margin-bottom: 20px; /* Adds space between the date/time and the cards */
+    font-size: 18px; /* Adjust size as needed */
+    font-weight: bold; /* Makes it stand out more, optional */
+}
+
+#covid-data {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;  
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    min-width: 200px;
+    text-align: center;
+}
+
+.number {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#error-message {
+    color: red;
+    font-weight: bold;
+}
+
+
+.covid-container {
+    display: flex;
+    flex-direction: column; /* Stacks elements vertically */
+    align-items: center; /* Centers items horizontally */
+    padding: 20px;
+}
+
+#last-updated {
+    margin-bottom: 20px; /* Adds space between the date/time and the cards */
+    font-size: 18px; /* Adjust size as needed */
+    font-weight: bold; /* Makes it stand out more, optional */
+}
+
+#covid-data {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start; /* Adjusts alignment for items within this container */
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    min-width: 200px;
+    text-align: center;
+    background-color: #f9f9f9; /* Optional: Adds a background color to the cards */
+}
+
+.number {
+    display: inline-block; /* Allows us to apply padding and border radius */
+    border-radius: 20px; /* Gives the rounded edges */
+    background-color: #003366; /* Dark blue background */
+    color: white; /* Ensures the text is white */
+    padding: 10px 20px; /* Adjusts the space inside the rounded edges */
+    margin-bottom: 8px; /* Adds space between the number and the label below */
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Adds a slight shadow for depth */
+    font-size: 24px; /* Keeps font size large and readable */
+    font-weight: bold;
+}
+
+.label {
+    display: block; /* Ensures the label is on a new line below the number */
+    font-size: 16px;
+    font-weight: bold;
+    color: #333; /* Dark text for readability */
+}
+
+#error-message {
+    color: red;
+    font-weight: bold;
+}
+
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    min-width: 200px;
+    text-align: center;
+    background-color: #f9f9f9; /* Adds a background color to the cards */
+    display: flex; /* Use flex to help center content */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+
+.number {
+    display: inline-block; /* Allows us to apply padding and border radius */
+    border-radius: 20px; /* Gives the rounded edges */
+    background-color: #003366; /* Dark blue background */
+    color: white; /* Ensures the text is white */
+    padding: 10px 20px; /* Adjusts the space inside the rounded edges */
+    margin-bottom: 8px; /* Adds space between the number and the label below */
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Adds a slight shadow for depth */
+    font-size: 24px; /* Keeps font size large and readable */
+    font-weight: bold;
+    width: auto; /* Adjust width to fit content */
+}
+
+.label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333; /* Dark text for readability */
+    text-align: center; /* Ensures text is centered */
+    width: 100%; /* Forces label to take full width of card */
+}

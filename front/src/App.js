@@ -9,6 +9,7 @@ import AzurirajUslugu from './components/usluge/AzurirajUslugu';
 import Login from './components/login/Login';
 import Register from './components/login/Register';
 import KreirajZahtev from './components/zahtevi/KreirajZahtev';
+import Covid from './components/covid/Covid';
 
 function App() {
   const [token,setToken]=useState(null);
@@ -24,7 +25,7 @@ function App() {
 
 
 
-
+        <Route path="/covid" element={<Covid />} />
         <Route path="/kreirajzahtev" element={<KreirajZahtev />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login setToken={setToken} />} />

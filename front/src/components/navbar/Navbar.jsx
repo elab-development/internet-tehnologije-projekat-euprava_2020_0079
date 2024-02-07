@@ -24,15 +24,17 @@ function Navbar({ token, setToken }) {
       <div className="nav-container">
         <div className="nav-links">
           <Link to="/" className="nav-item">Početna</Link>
-          <Link to="/usluge/dodaj" className="nav-item">Dodaj</Link>
-          <Link to="/usluge" className="nav-item">Usluge</Link>
-          <Link to="/kreirajzahtev" className="nav-item">Kreiraj zahtev</Link> 
-          {token ? (
+          <Link to="/covid" className="nav-item">Covid</Link>
+          {token ? (<>
             <button onClick={handleLogout} className="nav-item">Logout</button>
+            <Link to="/usluge/dodaj" className="nav-item">Dodaj</Link>
+            <Link to="/usluge" className="nav-item">Usluge</Link>
+            <Link to="/kreirajzahtev" className="nav-item">Kreiraj zahtev</Link> 
+            </>
           ) : (<>            
-            <Link to="/login" className="nav-item">Login</Link>
-            <Link to="/register" className="nav-item">Register</Link></>
-
+             <Link to="/login" className="nav-item">Login</Link>
+            <Link to="/register" className="nav-item">Register</Link> 
+            </>
           )}
         </div>
       </div>
