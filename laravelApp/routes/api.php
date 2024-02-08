@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ObavestenjeController;
 use App\Http\Controllers\UslugaController;
 use App\Http\Controllers\ZahtevController;
 use Illuminate\Http\Request;
@@ -39,3 +40,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
+Route::get('/obavestenja', [ObavestenjeController::class, 'index']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/obavestenja', [ObavestenjeController::class, 'store']);
+    Route::get('/obavestenja/{id}', [ObavestenjeController::class, 'show']);
+    Route::put('/obavestenja/{id}', [ObavestenjeController::class, 'update']);
+    Route::delete('/obavestenja/{id}', [ObavestenjeController::class, 'destroy']);
+});
