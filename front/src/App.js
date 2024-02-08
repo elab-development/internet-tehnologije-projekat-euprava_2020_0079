@@ -16,9 +16,10 @@ import ObavestenjaPage from './components/usluge/ObavestenjaPage';
 
 function App() {
   const [token,setToken]=useState(null);
+  const [uloga,setUloga]=useState(null);
   return (
     <BrowserRouter>
-    <Navbar setToken={setToken} token={token}></Navbar>
+    <Navbar setToken={setToken} token={token} setUloga={setUloga} uloga={uloga}></Navbar>
       <Routes>
         
         <Route path="/" element={<PocetnaStranica />} />
@@ -35,7 +36,7 @@ function App() {
         <Route path="/covid" element={<Covid />} />
         <Route path="/kreirajzahtev" element={<KreirajZahtev />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login setToken={setToken} />} />
+        <Route path="/login" element={<Login setToken={setToken}   setUloga={setUloga}/>} />
 
       </Routes>
       

@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
-function Login({setToken}) {
+function Login({setToken,setUloga}) {
     let navigate=useNavigate();
   const [formData, setFormData] = useState({
     email: 'qcole@example.net',
@@ -33,6 +33,7 @@ function Login({setToken}) {
         navigate('/kreirajzahtev');
      }
       setToken(accessToken)
+      setUloga(response.data.user.role);
     } catch (error) {
       setError('Invalid email or password. Please try again.');
       console.error('Error logging in:', error);
