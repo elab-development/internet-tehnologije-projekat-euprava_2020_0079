@@ -32,7 +32,9 @@ Route::middleware('auth:sanctum')->get('/user', [AuthController::class, 'getCurr
 Route::resource('/usluge', UslugaController::class)->only(['store', 'update', 'destroy']);  //izvadjeno iz donje grupe ruta za potrebe react domaceg
 // Zaštita svih ruta koje izvršavaju delete, update i store akcije
 Route::middleware(['auth:sanctum'])->group(function () {
+
    
+    Route::get('/zahtevi/statistics', [ZahtevController::class, 'statistics']);
     Route::resource('/zahtevi', ZahtevController::class)->only(['store', 'update', 'destroy']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });

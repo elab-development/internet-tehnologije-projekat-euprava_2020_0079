@@ -10,6 +10,7 @@ import Login from './components/login/Login';
 import Register from './components/login/Register';
 import KreirajZahtev from './components/zahtevi/KreirajZahtev';
 import Covid from './components/covid/Covid';
+import Statistics from './components/admin/Statistike';
 
 function App() {
   const [token,setToken]=useState(null);
@@ -25,6 +26,7 @@ function App() {
 
 
 
+        <Route path="/admin" element={<Statistics />} />
         <Route path="/covid" element={<Covid />} />
         <Route path="/kreirajzahtev" element={<KreirajZahtev />} />
         <Route path="/register" element={<Register />} />

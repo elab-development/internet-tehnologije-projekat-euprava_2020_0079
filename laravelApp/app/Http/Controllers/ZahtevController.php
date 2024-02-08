@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ZahtevResource;
+use App\Models\User;
+use App\Models\Usluga;
 use App\Models\Zahtev;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -93,4 +95,28 @@ class ZahtevController extends Controller
         $zahtev->delete();
         return response()->json(['message' => 'Zahtev deleted successfully']);
     }
+
+
+    public function statistics()
+    {
+        // Broj zahteva za svaku uslugu sa nazivom
+        $zahteviPoUslugama = Zahtev::join('uslugas', 'zahtevs.usluga_id', '=', 'uslugas.id')
+            ->select('uslugas.naziv', Zahtev::raw('count(*) as total'))
+            ->groupBy('uslugas.naziv')
+            ->get()
+            ->pluck('total', 'naziv');
+    
+        // Ukupan broj usluga
+        $ukupanBrojUsluga = Usluga::count();
+    
+        // Ukupan broj korisnika koji nisu admin
+        $ukupanBrojKorisnika = User::where('role', 'user')->count();
+    
+        return response()->json([
+            'zahtevi_po_uslugama' => $zahteviPoUslugama,
+            'ukupan_broj_usluga' => $ukupanBrojUsluga,
+            'ukupan_broj_korisnika' => $ukupanBrojKorisnika,
+        ]);
+    }
+    
 }

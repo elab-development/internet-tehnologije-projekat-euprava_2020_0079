@@ -29,6 +29,7 @@ function Navbar({ token, setToken }) {
             <button onClick={handleLogout} className="nav-item">Logout</button>
             <Link to="/usluge/dodaj" className="nav-item">Dodaj</Link>
             <Link to="/usluge" className="nav-item">Usluge</Link>
+            <Link to="/admin" className="nav-item">Admin</Link>
             <Link to="/kreirajzahtev" className="nav-item">Kreiraj zahtev</Link> 
             </>
           ) : (<>            
