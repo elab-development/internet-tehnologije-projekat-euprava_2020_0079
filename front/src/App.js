@@ -12,6 +12,7 @@ import KreirajZahtev from './components/zahtevi/KreirajZahtev';
 import Covid from './components/covid/Covid';
 import Statistics from './components/admin/Statistike';
 import KreirajObavestenje from './components/admin/KreirajObavestenje';
+import ObavestenjaPage from './components/usluge/ObavestenjaPage';
 
 function App() {
   const [token,setToken]=useState(null);
@@ -27,6 +28,7 @@ function App() {
 
 
 
+        <Route path="/obavestenja" element={<ObavestenjaPage />} />
 
         <Route path="/admin/kreirajObavestenje" element={<KreirajObavestenje />} />
         <Route path="/admin" element={<Statistics />} />
