@@ -59,6 +59,7 @@ function KreirajZahtev() {
       // Slanje zahteva sa tokenom u zaglavlju
       const response = await axios.post('http://127.0.0.1:8000/api/zahtevi', formData, config);
       console.log('New request created:', response.data);  
+      alert("ZAHTEV KREIRAN");
     } catch (error) {
       setError('Error creating request. Please check your input and try again.');
       console.error('Error creating request:', error);

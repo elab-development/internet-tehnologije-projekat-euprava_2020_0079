@@ -20,7 +20,7 @@ class ZahtevFactory extends Factory
     {
         return [
             'korisnik_id' =>  User::factory(), 
-            'usluga_id' =>  Usluga::factory(),  
+            'usluga_id' =>  random_int(1,5),  
             'status_zahteva' => $this->faker->randomElement(['pending', 'processed', 'denied']),
             'submitted_at' => $this->faker->dateTimeThisYear(),
             'processed_at' => $this->faker->randomElement([null, $this->faker->dateTimeThisYear()]),

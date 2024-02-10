@@ -30,10 +30,15 @@ function App() {
 
 
         <Route path="/obavestenja" element={<ObavestenjaPage />} />
+       <Route path="/covid" element={<Covid />} />
+
 
         <Route path="/admin/kreirajObavestenje" element={<KreirajObavestenje />} />
         <Route path="/admin" element={<Statistics />} />
-        <Route path="/covid" element={<Covid />} />
+       
+
+
+       
         <Route path="/kreirajzahtev" element={<KreirajZahtev />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login setToken={setToken}   setUloga={setUloga}/>} />

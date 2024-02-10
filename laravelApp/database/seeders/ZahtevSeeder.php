@@ -15,6 +15,6 @@ class ZahtevSeeder extends Seeder
      */
     public function run()
     {
-        Zahtev::factory()->count(3)->create();
+        Zahtev::factory()->count(30)->create();
     }
 }
